@@ -5,7 +5,6 @@ if (!(myComp instanceof CompItem)) {
   var vertexArray = [];
   var faceArray = [];
   objFile_vertices_to_AE_Nulls();
-  buildPolys();
 }
 
 function objFile_vertices_to_AE_Nulls () {
@@ -53,6 +52,7 @@ function objFile_vertices_to_AE_Nulls () {
         myNull.enabled = false;
       }
     }
+    // Face Code - Joe Clay - workbench.tv
     if (faceArray.length > 0) {
       myShape = myComp.layers.addShape();
       myShape.name = objFile.displayName;
