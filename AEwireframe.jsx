@@ -34,7 +34,6 @@ function getMaterials(objFile) {
       }
     }
   }
-  alert(mat);
   return mat;
 }
 
