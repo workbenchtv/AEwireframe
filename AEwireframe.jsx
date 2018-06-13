@@ -6,6 +6,9 @@
 
     Thanks to Lloyd Alvarez and Aharon Rabinowitz
     objFile vertices to AE Nulls © 2018 Lloyd Alvarez https://aescripts.com/
+    ToDo: Make set comp to shy if vertices exceed 50
+    ToDo: Optimize/refactor
+    ToDo: Check import without MTL file
   *************************************************************************/
 
   function WB_AEwireframe() {
@@ -51,7 +54,7 @@
         fileObject.close();
         return fileContents.split(/\r?\n/);
       } else {
-        alert ("There was an error reading the obj file");
+        alert ("There was an error reading the file: " + fileObject.name);
         return false;
       }
     }
@@ -64,8 +67,9 @@
       var mat = {};
       var mtlFile = objFile.fsName.substr(0,objFile.fsName.length-3) + 'mtl';
       mtlFile = new File(mtlFile);
-      if (!(mtlFile instanceof File)) {
-        return mat.default = [1,1,1,1];
+      if (!(mtlFile.exists)) {
+        mat['default'] = [1,1,1,1];
+        return mat;
       }
       mtlLines = readFile(mtlFile);
       if(mtlLines) {
